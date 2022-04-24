@@ -1,0 +1,464 @@
+:root {
+  --primary-color: #35bdd6;
+}
+.pagina {
+  font-family: Montserrat, "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+  /* background: #2B8689; */
+ 
+}
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+.container {
+  width: 60%;
+  min-width: 380px;
+  background: white;
+}
+
+.baner {
+  background-color: #35bdd6;
+  padding: 20px;
+}
+.texto-baner { 
+  color: white;
+}
+
+h2,p {
+  color: #666;
+}
+
+
+  /* Global Stylings */
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+  
+input {
+  display: block;
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 0.25rem;
+}
+  
+.text-center {
+  text-align: center;
+}
+  
+  /* Progressbar */
+.progressbar {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  counter-reset: step;
+  margin: 1rem 4rem 2rem;
+  
+}
+  
+.progressbar::before,
+.progress {
+  content: "";
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 4px;
+  width: 100%;
+  background-color: #dcdcdc;
+  z-index: -1;
+  border: 1px solid red;
+}
+  
+.progress {
+  background-color: var(--primary-color);
+  width: 0%;
+  transition: 0.3s;
+}
+  
+.progress-step {
+  width: 2.1875rem;
+  height: 2.1875rem;
+  background-color: #dcdcdc;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+  
+.progress-step::before {
+  counter-increment: step;
+  content: counter(step);
+  font-weight: 500;
+}
+  
+.progress-step::after {
+  content: attr(data-title);
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #666;
+  
+}
+  
+.progress-step-active {
+  background-color: var(--primary-color);
+  color: #f3f3f3;
+}
+  
+  /* Form */
+form {
+  width: 70%;
+  margin: 0 auto;
+  /* border: 1px solid #ccc; */
+  border-radius: 0.35rem;
+  padding: 1.5rem;
+  
+  /* z-index: -5; */
+  /* background-color: white; */
+}
+  
+.form-step {
+  display: none;
+  transform-origin: top;
+  animation: animate 0.5s;
+}
+  
+.form-step-active {
+  display: block;
+}
+  
+.input-group {
+  margin: 2rem 0;
+}
+  
+@keyframes animate {
+  from {
+    transform: scale(1, 0);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1, 1);
+    opacity: 1;
+  }
+}
+  
+  /* Button */
+.btns-group {
+  display: grid;
+  grid-template-columns: repeat(2, 100px);
+  gap: 1.5rem;
+  justify-content: center;
+  
+    
+}
+  
+.btn {
+  padding: 0.75rem;
+  display: block;
+  text-decoration: none;
+  background-color: var(--primary-color);
+  /* color: #f3f3f3; */
+  color: white;
+  text-align: center;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  transition: 0.3s;
+  font-weight: 600;
+}
+
+.botao-inicial {
+  display: grid;
+  grid-template-columns: repeat(1, 100px);
+  /* gap: 1.5rem; */
+  justify-content: center;
+  
+  font-weight: 600;
+  color: white;
+}
+.btn:hover {
+  /* box-shadow: 0 0 0 2px #fff, 0 0 0 3px var(--primary-color); */
+  box-shadow: 0 0 0 2px #fff, 0 0 0 3px #666;
+}
+
+
+
+
+
+
+
+
+/* .stepper-wrapper {
+    margin-top: auto;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+.stepper-item {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+  
+    @media (max-width: 768px) {
+      font-size: 12px;
+    }
+}
+  
+.stepper-item::before {
+    position: absolute;
+    content: "";
+    border-bottom: 2px solid #ccc;
+    width: 100%;
+    top: 20px;
+    left: -50%;
+    z-index: 2;
+    
+}
+  
+.stepper-item::after {
+    position: absolute;
+    content: "";
+    border-bottom: 2px solid #ccc;
+    width: 100%;
+    top: 20px;
+    left: 50%;
+    z-index: 2;
+    
+}
+  
+.stepper-item .step-counter {
+    position: relative;
+    z-index: 5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #ccc;
+    margin-bottom: 6px;
+}
+  
+.stepper-item.active {
+    font-weight: bold;
+}
+  
+.stepper-item.completed .step-counter {
+    background-color: #4bb543;
+}
+  
+.stepper-item.completed::after {
+    position: absolute;
+    content: "";
+    border-bottom: 2px solid #4bb543;
+    width: 100%;
+    top: 20px;
+    left: 50%;
+    z-index: 3;
+}
+  
+.stepper-item:first-child::before {
+    content: none;
+}
+.stepper-item:last-child::after {
+    content: none;
+} */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* * {
+    margin: 0;
+    padding: 0;
+}
+html {
+    height: 100%;
+}
+  
+h2{
+    color: #2F8D46;
+}
+#form {
+    text-align: center;
+    position: relative;
+    margin-top: 20px;
+}
+#form fieldset {
+    background: white;
+    border: 0 none;
+    border-radius: 0.5rem;
+    box-sizing: border-box;
+    width: 100%;
+    margin: 0;
+    padding-bottom: 20px;
+    position: relative;
+}
+.finish {
+    text-align: center;
+}
+
+#progressbar {
+    margin-bottom: 20px;
+    overflow: hidden;
+    color: lightgrey;
+}
+#progressbar .active {
+    color: #2F8D46;
+}
+#progressbar li {
+    list-style-type: none;
+    font-size: 15px;
+    width: 20%;
+    float: left;
+    position: relative;
+    font-weight: 400;
+}
+#progressbar #step1:before {
+    content: "1";
+}
+  
+#progressbar #step2:before {
+    content: "2";
+}
+  
+#progressbar #step3:before {
+    content: "3";
+}
+  
+#progressbar #step4:before {
+    content: "4";
+}
+#progressbar #step5:before {
+    content: "5";
+}
+#progressbar li:before {
+    width: 50px;
+    height: 50px;
+    line-height: 45px;
+    display: block;
+    font-size: 20px;
+    color: #ffffff;
+    background: lightgray;
+    border-radius: 50%;
+    margin: 0 auto 10px auto;
+    padding: 2px;
+}
+#progressbar li:after {
+    content: '';
+    width: 100%;
+    height: 2px;
+    background: lightgray;
+    position: absolute;
+    left: 0;
+    top: 25px;
+    z-index: -1
+}
+#progressbar li.active:before,
+#progressbar li.active:after {
+    background: #2F8D46
+}
+.progress {
+    height: 10px
+}
+.progress-bar {
+    background-color: #2F8D46
+}
+.container {
+    width: 60%;
+} */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* *,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+    font-family: Montserrat, "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    display: grid;
+    place-items: center;
+    min-height: 100vh;
+  }
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+input {
+    display: block;
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 0.25rem;
+}
+.form {
+    width: clamp(320px, 30%, 430px);
+    margin: 0 auto;
+    border: 1px solid rgb(49, 49, 49);
+    border-radius: 0.35rem;
+    padding: 1.5rem;
+}
+.input-group {
+    margin: 2rem 0;
+  } */
+
